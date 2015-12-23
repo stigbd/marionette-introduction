@@ -16,15 +16,37 @@
         </div>
     </div>
 
-    <div class="container">
-        <p>Here is static content in the web page. You'll notice that it gets replaced by our app as soon as we start it.</p>
+    <div id="app-container">
+        <div id="main-region" class="container">
+            <p>Here is static content in the web page. You'll notice that it gets replaced by our app as soon as we start it.</p>
+        </div>
     </div>
 
-    <script src="./assets/js/vendor/jquery/jquery.js"></script>
-    <script src="./assets/js/vendor/json2/json2.js"></script>
-    <script src="./assets/js/vendor/underscore/underscore.js"></script>
-    <script src="./assets/js/vendor/backbone/backbone.js"></script>
-    <script src="./assets/js/vendor/backbone.marionette/backbone.marionette.js"></script>
+    <script type="text/template" id="static-template">
+        <p>This is the text that was rendered by our Marionette app.</p>
+    </script>
 
+    <script src="./bower_components/jquery/dist/jquery.js"></script>
+    <script src="./bower_components/json2/json2.js"></script>
+    <script src="./bower_components/underscore/underscore.js"></script>
+    <script src="./bower_components/backbone/backbone.js"></script>
+    <script src="./bower_components/backbone.marionette/lib/backbone.marionette.js"></script>
+
+    <script type="text/javascript">
+    var ContactManager = new Marionette.Application();
+
+    ContactManager.StaticView = Marionette.ItemView.extend({
+        el: "#main-region",
+        template: "#static-template"
+    });
+
+    ContactManager.on("start", function() {
+        var staticView = new ContactManager.StaticView();
+        staticView.render();
+        console.log("ContactManager has started!")
+    });
+
+    ContactManager.start();
+    </script>
 </body>
 </html>
