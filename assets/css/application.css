@@ -1,0 +1,5 @@
+body {
+    /* 60px tomove the container down and make room for
+    * the navigation bar */
+    padding-top: 60px;
+}
