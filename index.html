@@ -43,16 +43,16 @@
         template: "#static-template"
     });
 
-ContactManager.on("before:start", function(){
-    var RegionContainer = Marionette.LayoutView.extend({
-        el: "#app-container",
+    ContactManager.on("before:start", function(){
+        var RegionContainer = Marionette.LayoutView.extend({
+            el: "#app-container",
 
-        regions: {
-            main: "#main-region"
-        }
+            regions: {
+                main: "#main-region"
+            }
+        });
+        ContactManager.regions = new RegionContainer();
     });
-    ContactManager.regions = new RegionContainer();
-});
     ContactManager.on("start", function() {
         var staticView = new ContactManager.StaticView();
         ContactManager.regions.main.show(staticView);
