@@ -10,7 +10,7 @@ module.exports = function(grunt) {
         // jsHint
         // Run jsHint syntax checking on all necessary .js files
         jshint: {
-            all: ['Gruntfile.js', 'assets/**/*.js'],
+            all: ['Gruntfile.js', 'assets/**/*.js', '!assets/js/vendor/**/*.js'],
         },
 
         // bower
@@ -49,5 +49,5 @@ module.exports = function(grunt) {
     // build:dev
 
     // default
-    grunt.registerTask('default', ['browserSync:dev']);
+    grunt.registerTask('default', ['jshint', 'browserSync:dev']);
 };
