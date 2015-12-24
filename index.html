@@ -26,6 +26,9 @@
         <p><%- firstName %> <%- lastName %></p>
     </script>
 
+    <script type="text/template" id="contact-list-item">
+        <li><%- firstName %> <%- lastName %></li>
+    </script>
 
     <script src="./bower_components/jquery/dist/jquery.js"></script>
     <script src="./bower_components/json2/json2.js"></script>
@@ -44,16 +47,25 @@
         }
     });
 
-    ContactManager.ContactView = Marionette.ItemView.extend({
-        template: "#contact-template",
+    ContactManager.ContactCollection = Backbone.Collection.extend({
+        model: ContactManager.Contact
+    });
 
+    ContactManager.ContactItemView = Marionette.ItemView.extend({
+        tagName: "li",
+        template: "#contact-list-item",
         events: {
-            "click p": "alertPhoneNumber"
+            "click li": "alertPhoneNumber"
         },
 
         alertPhoneNumber: function(){
             alert(this.model.escape("phoneNumber"));
         }
+    });
+
+    ContactManager.ContactsView = Marionette.CollectionView.extend({
+        tagName: "ul",
+        childView: ContactManager.ContactItemView
     });
 
     ContactManager.on("before:start", function(){
@@ -68,17 +80,29 @@
     });
 
     ContactManager.on("start", function() {
-        var alice = new ContactManager.Contact({
-            firstName: "Alice",
-            lastName: "Arten",
-            phoneNumber: "555-0184"
+        var contacts = new ContactManager.ContactCollection([
+            {
+                firstName: "Alice",
+                lastName: "Arten",
+                phoneNumber: "555-0184"
+            },
+            {
+                firstName: "Bob",
+                lastName: "Brigham",
+                phoneNumber: "555-0163"
+            },
+            {
+                firstName: "Charlie",
+                lastName: "Campell",
+                phoneNumber: "555-0129"
+            }
+        ]);
+
+        var contactsListView = new ContactManager.ContactsView({
+            collection: contacts
         });
 
-        var aliceView = new ContactManager.ContactView({
-            model: alice
-        });
-
-        ContactManager.regions.main.show(aliceView);
+        ContactManager.regions.main.show(contactsListView);
         console.log("ContactManager has started!")
     });
 
