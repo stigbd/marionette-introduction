@@ -26,6 +26,10 @@
         <p>This is the text that was rendered by our Marionette app.</p>
     </script>
 
+    <script type="text/template" id="different-static-template">
+        <p>Text from a diffente template...</p>
+    </script>
+
     <script src="./bower_components/jquery/dist/jquery.js"></script>
     <script src="./bower_components/json2/json2.js"></script>
     <script src="./bower_components/underscore/underscore.js"></script>
@@ -41,7 +45,9 @@
     });
 
     ContactManager.on("start", function() {
-        var staticView = new ContactManager.StaticView();
+        var staticView = new ContactManager.StaticView({
+            template: "#different-static-template"
+        });
         staticView.render();
         console.log("ContactManager has started!")
     });
