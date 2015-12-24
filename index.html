@@ -22,13 +22,10 @@
         </div>
     </div>
 
-    <script type="text/template" id="static-template">
-        <p>This is the text that was rendered by our Marionette app.</p>
+    <script type="text/template" id="contact-template">
+        <p><%- firstName %> <%- lastName %></p>
     </script>
 
-    <script type="text/template" id="different-static-template">
-        <p>Text from a diffente template...</p>
-    </script>
 
     <script src="./bower_components/jquery/dist/jquery.js"></script>
     <script src="./bower_components/json2/json2.js"></script>
@@ -37,10 +34,13 @@
     <script src="./bower_components/backbone.marionette/lib/backbone.marionette.js"></script>
 
     <script type="text/javascript">
+
     var ContactManager = new Marionette.Application();
 
-    ContactManager.StaticView = Marionette.ItemView.extend({
-        template: "#static-template"
+    ContactManager.Contact = Backbone.Model.extend({});
+
+    ContactManager.ContactView = Marionette.ItemView.extend({
+        template: "#contact-template"
     });
 
     ContactManager.on("before:start", function(){
@@ -53,9 +53,19 @@
         });
         ContactManager.regions = new RegionContainer();
     });
+
     ContactManager.on("start", function() {
-        var staticView = new ContactManager.StaticView();
-        ContactManager.regions.main.show(staticView);
+        var alice = new ContactManager.Contact({
+            firstName: "Alice",
+            lastName: "Arten",
+            phoneNumber: "555-0184"
+        });
+
+        var aliceView = new ContactManager.ContactView({
+            model: alice
+        });
+
+        ContactManager.regions.main.show(aliceView);
         console.log("ContactManager has started!")
     });
 
