@@ -1,22 +1,28 @@
 ContactManager.module("ContactsApp.List", function(List, ContactManager,
-Bacbone, Marionette, $, _){
-    List.Contact = Marionette.ItemView.extend({
-        tagName: "tr",
-        template: "#contact-list-item",
-        events: {
-            "click li": "alertPhoneNumber"
-        },
+    Bacbone, Marionette, $, _){
 
-        alertPhoneNumber: function(){
-            alert(this.model.escape("phoneNumber"));
-        }
-    });
+        List.Contact = Marionette.ItemView.extend({
+            tagName: "tr",
+            template: "#contact-list-item",
 
-    List.Contacts = Marionette.CompositeView.extend({
-        tagName: "table",
-        className: "table table-hover",
-        template: "#contact-list",
-        childView: List.Contact,
-        childViewContainer: "tbody"
+            events: {
+                "click" : "highlightName",
+                "click li": "alertPhoneNumber"
+            },
+
+            highlightName: function() {
+                this.$el.toggleClass("warning");
+            },
+            alertPhoneNumber: function(){
+                alert(this.model.escape("phoneNumber"));
+            }
+        });
+
+        List.Contacts = Marionette.CompositeView.extend({
+            tagName: "table",
+            className: "table table-hover",
+            template: "#contact-list",
+            childView: List.Contact,
+            childViewContainer: "tbody"
+        });
     });
-});
