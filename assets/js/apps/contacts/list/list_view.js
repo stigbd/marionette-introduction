@@ -1,7 +1,7 @@
 ContactManager.module("ContactsApp.List", function(List, ContactManager,
 Bacbone, Marionette, $, _){
     List.Contact = Marionette.ItemView.extend({
-        tagName: "li",
+        tagName: "tr",
         template: "#contact-list-item",
         events: {
             "click li": "alertPhoneNumber"
@@ -12,8 +12,11 @@ Bacbone, Marionette, $, _){
         }
     });
 
-    List.Contacts = Marionette.CollectionView.extend({
-        tagName: "ul",
-        childView: List.Contact
+    List.Contacts = Marionette.CompositeView.extend({
+        tagName: "table",
+        className: "table table-hover",
+        template: "#contact-list",
+        childView: List.Contact,
+        childViewContainer: "tbody"
     });
 });
