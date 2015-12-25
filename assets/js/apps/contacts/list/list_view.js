@@ -6,8 +6,9 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager,
             template: "#contact-list-item",
 
             events: {
-                "click" : "highlightName",
-                "click li": "alertPhoneNumber"
+                "click": "highlightName",
+                "click li": "alertPhoneNumber",
+                "click button.js-delete": "deleteClicked"
             },
 
             highlightName: function() {
@@ -15,6 +16,10 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager,
             },
             alertPhoneNumber: function(){
                 alert(this.model.escape("phoneNumber"));
+            },
+            deleteClicked: function(e){
+                e.stopPropagation();
+                this.trigger("contact:delete", this.model);
             }
         });
 
