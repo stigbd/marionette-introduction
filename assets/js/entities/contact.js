@@ -31,28 +31,34 @@ ContactManager.module("Entities", function(Entities,
         var initializeContacts = function() {
             contacts = new Entities.ContactCollection([
                 {
+                    id: 1,
                     firstName: "Bob",
                     lastName: "Brigham",
                     phoneNumber: "555-0163"
                 },
                 {
+                    id: 2,
                     firstName: "Alice",
                     lastName: "Tampen",
                 },
                 {
+                    id: 3,
                     firstName: "Alice",
                     lastName: "Arten",
                     phoneNumber: "555-0184"
                 },
                 {
+                    id: 4,
                     firstName: "Alice",
                     lastName: "Artsy",
                 },
                 {
+                    id: 5,
                     firstName: "Alice",
                     lastName: "Smith",
                 },
                 {
+                    id: 6,
                     firstName: "Charlie",
                     lastName: "Campell",
                     phoneNumber: "555-0129"
