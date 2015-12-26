@@ -84,10 +84,10 @@ ContactManager.module("Entities", function(Entities,
                 return contacts;
             },
             getContactEntity: function(contactId){
-            var contact = new Entities.Contact({id: contactId});
-            contact.fetch();
-            console.log("Fetched contact: ", contact);
-            return contact;
+                var contact = new Entities.Contact({id: contactId});
+                contact.fetch();
+                console.log("Fetched contact: ", contact);
+                return contact;
             }
         };
 
