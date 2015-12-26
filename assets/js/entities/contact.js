@@ -2,7 +2,10 @@ ContactManager.module("Entities", function(Entities,
     ContactManager, Backbone, Marionette, $, _) {
 
         Entities.Contact = Backbone.Model.extend({
-            urlRoot: "contacts"
+            urlRoot: "contacts",
+            defaults: {
+                phoneNumber: ""
+            }
         });
 
         Entities.configureStorage("ContactManager.Entities.Contact");
