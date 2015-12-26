@@ -13,6 +13,7 @@ ContactManager.on("before:start", function(){
 
 ContactManager.on("start", function() {
 
-    ContactManager.ContactsApp.List.Controller.listContacts();
-    console.log("ContactManager has started!");
+    if(Backbone.history){
+        Backbone.history.start();
+    }
 });
