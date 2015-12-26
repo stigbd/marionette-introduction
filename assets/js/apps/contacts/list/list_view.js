@@ -7,15 +7,17 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager,
 
             events: {
                 "click": "highlightName",
-                "click li": "alertPhoneNumber",
+                "click td a.js-show": "showClicked",
                 "click button.js-delete": "deleteClicked"
             },
 
             highlightName: function() {
                 this.$el.toggleClass("warning");
             },
-            alertPhoneNumber: function(){
-                alert(this.model.escape("phoneNumber"));
+            showClicked: function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                this.trigger("contact:show", this.model);
             },
             deleteClicked: function(e){
                 e.stopPropagation();
