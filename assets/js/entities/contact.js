@@ -5,10 +5,11 @@ ContactManager.module("Entities", function(Entities,
             urlRoot: "contacts",
             defaults: {
                 phoneNumber: ""
-            }
+            },
+            localStorage: new Backbone.LocalStorage("Contacts")
         });
 
-        Entities.configureStorage("ContactManager.Entities.Contact");
+        //Entities.configureStorage("ContactManager.Entities.Contact");
 
         Entities.ContactCollection = Backbone.Collection.extend({
             url: "contacts",
@@ -27,10 +28,11 @@ ContactManager.module("Entities", function(Entities,
                 else {
                     if(aFirstName < bFirstName) { return -1; }
                 }
-            }
+            },
+            localStorage: new Backbone.LocalStorage("Contacts")
         });
 
-        Entities.configureStorage("ContactManager.Entities.ContactCollection");
+        //Entities.configureStorage("ContactManager.Entities.ContactCollection");
 
         //var contacts;
 
