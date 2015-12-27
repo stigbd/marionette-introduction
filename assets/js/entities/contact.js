@@ -70,24 +70,43 @@ ContactManager.module("Entities", function(Entities,
             contacts.forEach(function(contact){
                 contact.save();
             });
-            return contacts;
+            return contacts.models;
         };
 
         var API = {
             getContactEntities: function() {
                 var contacts = new Entities.ContactCollection();
-                contacts.fetch();
-                if(contacts.length === 0) {
-                    // if no contacts, create some
-                    return initializeContacts();
-                }
-                return contacts;
+                var defer = $.Deferred();
+                contacts.fetch({
+                    success: function(data){
+                        defer.resolve(data);
+                    }
+                });
+                var promise = defer.promise();
+                $.when(promise).done(function(fetchedContacts){
+                    if(contacts.length === 0) {
+                        // if no contacts, create some
+
+                        var models = initializeContacts();
+                        contacts.reset(models);
+                    }
+                });
+                return promise;
             },
             getContactEntity: function(contactId){
                 var contact = new Entities.Contact({id: contactId});
-                contact.fetch();
-                console.log("Fetched contact: ", contact);
-                return contact;
+                var defer = $.Deferred();
+                setTimeout(function(){
+                    contact.fetch({
+                        success: function(data){
+                            defer.resolve(data);
+                        },
+                        error: function(data){
+                            defer.resolve(undefined);
+                        }
+                    });
+                }, 2000);
+                return defer.promise();
             }
         };
 
