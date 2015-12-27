@@ -9,8 +9,6 @@ ContactManager.module("Entities", function(Entities,
             localStorage: new Backbone.LocalStorage("Contacts")
         });
 
-        //Entities.configureStorage("ContactManager.Entities.Contact");
-
         Entities.ContactCollection = Backbone.Collection.extend({
             url: "contacts",
             model: Entities.Contact,
@@ -32,9 +30,6 @@ ContactManager.module("Entities", function(Entities,
             localStorage: new Backbone.LocalStorage("Contacts")
         });
 
-        //Entities.configureStorage("ContactManager.Entities.ContactCollection");
-
-        //var contacts;
 
         var initializeContacts = function() {
             var contacts = new Entities.ContactCollection([
