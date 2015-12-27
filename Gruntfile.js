@@ -13,6 +13,12 @@ module.exports = function(grunt) {
             all: ['Gruntfile.js', 'assets/**/*.js', '!assets/js/vendor/**/*.js'],
         },
 
+        clean: {
+             dev: {
+                 src: ['bower_components', 'assets/js/vendor']
+             }
+         },
+
         // bower
         bower: {
             install: {
@@ -46,7 +52,7 @@ module.exports = function(grunt) {
 
     // register tasks
     // init:dev
-    grunt.registerTask('init:dev', ['bower']);
+    grunt.registerTask('init:dev', ['clean:dev', 'bower']);
     // build:dev
 
     // default
