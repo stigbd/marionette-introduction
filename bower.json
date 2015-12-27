@@ -1,28 +1,48 @@
 {
-  "name": "marionettegentleintro",
-  "description": "",
-  "main": "index.js",
-  "authors": [
-    "Stig B. Dørmænen <stigbd@gmail.com>"
-  ],
-  "license": "ISC",
-  "moduleType": [],
-  "homepage": "",
-  "private": true,
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "jquery": "~2.1.4",
-    "json2": "*",
-    "underscore": "~1.8.3",
-    "backbone": "~1.2.3",
-    "backbone.marionette": "~2.4.4",
-    "bootstrap": "~3.3.6",
-    "backbone.localStorage": "backbone.localstorage#~1.1.16"
-  }
+    "name": "marionettegentleintro",
+    "description": "",
+    "main": "index.js",
+    "authors": [
+        "Stig B. Dørmænen <stigbd@gmail.com>"
+    ],
+    "license": "ISC",
+    "moduleType": [],
+    "homepage": "",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    
+    "dependencies": {
+        "jquery": "~2.1.4",
+        "json2": "*",
+        "underscore": "~1.8.3",
+        "backbone": "~1.2.3",
+        "backbone.marionette": "~2.4.4",
+        "bootstrap": "~3.3.6",
+        "backbone.localStorage": "backbone.localstorage#~1.1.16",
+        "spin": "~1.1.6",
+        "spinjs-jquery": "*"
+    },
+    "devDependencies": {
+    },
+    "exportsOverride": {
+        "jquery": {
+            "js": "dist/jquery.js"
+        },
+        "underscore": {
+            "js": "underscore.js"
+        },
+        "backbone": {
+            "js": "backbone.js"
+        },
+        "backbone.marionette": {
+            "js": "lib/backbone.marionette.js"
+        },
+        "jasmine": {}
+    }
 }
