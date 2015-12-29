@@ -3,6 +3,16 @@ ContactManager.module("Common.Views", function(Views, ContactManager,
         Views.Loading = Marionette.ItemView.extend({
             template: "#loading-view",
 
+            title: "Loading Data",
+            message: "Please wait, data is loading.",
+
+            serializeData: function(){
+                return {
+                    title: Marionette.getOption(this, "title"),
+                    message: Marionette.getOption(this, "message")
+                };
+            },
+
             onShow: function(){
                 var opts = {
                     lines: 13, // the number of lines to draw
