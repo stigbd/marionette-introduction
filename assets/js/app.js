@@ -15,7 +15,8 @@ ContactManager.on("before:start", function(){
         el: "#app-container",
 
         regions: {
-            main: "#main-region"
+            main: "#main-region",
+            dialog: "#dialog-region"
         }
     });
     ContactManager.regions = new RegionContainer();

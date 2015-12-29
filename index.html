@@ -6,8 +6,9 @@
     <link href="./bower_components/bootstrap/dist/css/bootstrap.css"
     rel="stylesheet">
     <link href="./assets/css/application.css" rel="stylesheet">
-    <!--link href="./assets/css/jquery-ui-1.10.3.custom.css" rel="stylesheet"-->
+    <link href="./assets/js/vendor/jqueryuibootstrap/css/custom-theme/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 </head>
+
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
@@ -21,6 +22,8 @@
         <div id="main-region" class="container">
             <p>Here is static content in the web page. You'll notice that it gets replaced by our app as soon as we start it.</p>
         </div>
+
+        <div id="dialog-region"></div>
     </div>
 
 
@@ -38,6 +41,10 @@
             <a href="#contacts/<%- id %>" class="btn btn-small js-show">
                 <span class="glyphicon glyphicon-eye-open"></span>
                 Show
+            </a>
+            <a href="#contacts/<%- id %>/edit" class="btn btn-small js-edit">
+                <span class="glyphicon glyphicon-pencil"></span>
+                Edit
             </a>
             <button class="btn btn-small js-delete">
                 <span class="glyphicon glyphicon-remove"></span>
@@ -66,7 +73,6 @@
     </script>
 
     <script type="text/template" id="contact-form">
-        <h1>Edit <%- firstName %> <%- lastName %></h1>
         <form>
             <div class="control-group">
                 <label for="contact-firstName" class="control-label">
@@ -94,6 +100,7 @@
     </script>
 
     <script src="./assets/js/vendor/jquery/js/jquery.js"></script>
+    <script src="./assets/js/vendor/jquery-ui/jquery-ui.js"></script>
     <script src="./assets/js/vendor/json2/json2.js"></script>
     <script src="./assets/js/vendor/underscore/js/underscore.js"></script>
     <script src="./assets/js/vendor/backbone/js/backbone.js"></script>
