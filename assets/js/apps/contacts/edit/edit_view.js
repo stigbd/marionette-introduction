@@ -30,10 +30,10 @@ ContactManager.module("ContactsApp.Edit", function(Edit, ContactManager,
 
                 var clearFormErrors = function() {
                     var $form = $view.find("form");
-                    $form.find(".help-inline-error").each(function() {
+                    $form.find(".help-block-error").each(function() {
                         $(this).remove();
                     });
-                    $form.find(".control-group.error").each(function() {
+                    $form.find(".form-group.error").each(function() {
                         $(this).removeClass("error");
                     });
                 };
@@ -41,7 +41,7 @@ ContactManager.module("ContactsApp.Edit", function(Edit, ContactManager,
                 var markErrors = function(value, key){
                     var $controlGroup = $view.find("#contact-" +
                     key).parent();
-                    var $errorEl = $("<span>", {class: "help-inline-error",
+                    var $errorEl = $("<span>", {class: "help-block-error",
                     text: value});
                     $controlGroup.append($errorEl).addClass("error");
                 };
