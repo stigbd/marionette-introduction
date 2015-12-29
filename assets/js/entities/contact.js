@@ -6,6 +6,25 @@ ContactManager.module("Entities", function(Entities,
             defaults: {
                 phoneNumber: ""
             },
+
+            validate: function(attributes, options) {
+                var errors = {};
+                if(! attributes.firstName) {
+                    errors.firstName = "can't be blank";
+                }
+                if(! attributes.lastName) {
+                    errors.lastName = "can't be blank";
+                }
+                else {
+                    if (attributes.lastName.length < 2) {
+                        errors.lastName = "is too short";
+                    }
+                }
+                if( ! _.isEmpty(errors)){
+                    return errors;
+                }
+            },
+
             localStorage: new Backbone.LocalStorage("Contacts")
         });
 
