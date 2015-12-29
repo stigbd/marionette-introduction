@@ -12,38 +12,47 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager,
                 "click button.js-delete": "deleteClicked"
             },
 
-            highlightName: function() {
-                this.$el.toggleClass("warning");
-            },
-            showClicked: function(e){
-                e.preventDefault();
-                e.stopPropagation();
-                this.trigger("contact:show", this.model);
-            },
-            editClicked: function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                this.trigger("contact:edit", this.model);
-            },
-            deleteClicked: function(e){
-                e.stopPropagation();
-                this.trigger("contact:delete", this.model);
-            },
+            flash: function(cssClass) {
+                var $view = this.$el;
+                $view.hide().toggleClass(cssClass).fadeIn(800,
+                    function() {
+                        setTimeout(function() {
+                            $view.toggleClass(cssClass);
+                        }, 500);
+                    });
+                },
+                highlightName: function() {
+                    this.$el.toggleClass("warning");
+                },
+                showClicked: function(e){
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.trigger("contact:show", this.model);
+                },
+                editClicked: function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.trigger("contact:edit", this.model);
+                },
+                deleteClicked: function(e){
+                    e.stopPropagation();
+                    this.trigger("contact:delete", this.model);
+                },
 
-            remove: function(){
-                var self = this;
-                this.$el.fadeOut(function() {
-                    Marionette.ItemView.prototype.remove.call(self);
-                });
-            }
+                remove: function(){
+                    var self = this;
+                    this.$el.fadeOut(function() {
+                        Marionette.ItemView.prototype.remove.call(self);
+                    });
+                }
 
+            });
+
+            List.Contacts = Marionette.CompositeView.extend({
+                tagName: "table",
+                className: "table table-hover",
+                template: "#contact-list",
+                childView: List.Contact,
+                childViewContainer: "tbody"
+            });
         });
-
-        List.Contacts = Marionette.CompositeView.extend({
-            tagName: "table",
-            className: "table table-hover",
-            template: "#contact-list",
-            childView: List.Contact,
-            childViewContainer: "tbody"
-        });
-    });

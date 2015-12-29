@@ -31,6 +31,18 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager,
                                 width: "auto"
                             });
                         });
+
+                        view.on("form:submit", function(data) {
+                            if(model.save(data)){
+                                childView.render();
+                                ContactManager.regions.dialog.empty();
+                                childView.flash("success");
+                            }
+                            else {
+                                view.triggerMethod("form:data:invalid",
+                                model.validationError);
+                            }
+                        });
                         ContactManager.regions.dialog.show(view);
                     });
 
