@@ -4,7 +4,8 @@ ContactManager.module("ContactsApp", function(ContactsApp, ContactManager,
         ContactsApp.Router = Marionette.AppRouter.extend({
             appRoutes: {
                 "contacts": "listContacts",
-                "contacts/:id": "showContact"
+                "contacts/:id": "showContact",
+                "contacts/:id/edit": "editContact"
             }
         });
 
@@ -14,6 +15,9 @@ ContactManager.module("ContactsApp", function(ContactsApp, ContactManager,
             },
             showContact: function(id){
                 ContactsApp.Show.Controller.showContact(id);
+            },
+            editContact: function(id){
+                ContactsApp.Edit.Controller.editContact(id);
             }
         };
 
@@ -25,6 +29,11 @@ ContactManager.module("ContactsApp", function(ContactsApp, ContactManager,
         ContactManager.on("contact:show", function(id){
             ContactManager.navigate("contacts/" + id);
             API.showContact(id);
+        });
+
+        ContactManager.on("contact:edit", function(id){
+            ContactManager.navigate("contacts/" + id + "/edit");
+            API.editContact(id);
         });
 
         ContactsApp.on("start", function() {
