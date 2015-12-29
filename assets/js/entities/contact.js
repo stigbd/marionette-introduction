@@ -4,6 +4,8 @@ ContactManager.module("Entities", function(Entities,
         Entities.Contact = Backbone.Model.extend({
             urlRoot: "contacts",
             defaults: {
+                firstName : "",
+                lastName: "",
                 phoneNumber: ""
             },
 
