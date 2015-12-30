@@ -12,6 +12,9 @@ ContactManager.module("ContactsApp.Edit", function(Edit, ContactManager,
                     var $title = $("<h1>", { text: this.title });
                     this.$el.prepend($title);
                 }
+
+                // this.$(...) is equivalent to this.$el.find(....)
+                this.$(".js-submit").text("Update contact");
             }
         });
     });
