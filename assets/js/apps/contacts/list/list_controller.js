@@ -58,23 +58,18 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager,
                     });
 
                     contactsListView.on("childview:contact:show",
-                    function(childView, model) {
-                        ContactManager.trigger("contact:show", model.get("id"));
+                    function(childView, args) {
+                        ContactManager.trigger("contact:show", args.model.get("id"));
                     });
 
                     contactsListView.on("childview:contact:edit",
-                    function(childView, model) {
+                    function(childView, args) {
+                        var model = args.model;
                         var view = new ContactManager.ContactsApp.Edit.Contact({
                             model: model,
                             asModal: true
                         });
 
-                        view.on("show", function() {
-                            this.$el.dialog({
-                                modal: true,
-                                width: "auto"
-                            });
-                        });
 
                         view.on("form:submit", function(data) {
                             if(model.save(data)){
@@ -91,8 +86,8 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager,
                     });
 
                     contactsListView.on("childview:contact:delete",
-                    function(childView, model) {
-                        model.destroy();
+                    function(childView, args) {
+                        args.model.destroy();
                     });
 
 

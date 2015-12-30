@@ -20,11 +20,14 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager,
             tagName: "tr",
             template: "#contact-list-item",
 
+            triggers: {
+            "click td a.js-show": "contact:show",
+            "click td a.js-edit": "contact:edit",
+            "click button.js-delete": "contact:delete"
+            },
+
             events: {
-                "click": "highlightName",
-                "click td a.js-show": "showClicked",
-                "click td a.js-edit": "editClicked",
-                "click button.js-delete": "deleteClicked"
+                "click": "highlightName"
             },
 
             flash: function(cssClass) {
