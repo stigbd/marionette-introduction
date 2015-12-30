@@ -24,7 +24,7 @@ ContactManager.module("ContactsApp.Common.Views", function(Views, ContactManager
             onShow: function(){
                 if(this.options.asModal) {
                     this.$el.dialog({
-                        modla: true,
+                        modal: true,
                         title: this.title,
                         width: "auto"
                     });
