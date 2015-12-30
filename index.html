@@ -38,6 +38,15 @@ upgrade from bootstrap 2 to bootstrap 3 -->
 
     <script type="text/template" id="contact-list-panel">
         <button class="btn btn-primary js-new">New contact</button>
+        <form id="filter-form" class="form-inline pull-right">
+            <div class="input-append">
+                <input type="text"
+                class="span2 search-query js-filter-criterion form-control">
+                <button type="submit" class="btn btn-default">
+                    Filter contacts
+                </button>
+            </div>
+        </form>
     </script>
 
     <script type="text/template" id="contact-list">
@@ -121,8 +130,9 @@ upgrade from bootstrap 2 to bootstrap 3 -->
     <script src="./assets/js/vendor/spin.js/spin.js"></script>
 
     <script src="./assets/js/app.js"></script>
-    <script src="./assets/js/entities/contact.js"></script>
     <script src="./assets/js/common/views.js"></script>
+    <script src="./assets/js/entities/contact.js"></script>
+    <script src="./assets/js/entities/common.js"></script>
 
     <script src="./assets/js/apps/contacts/contacts_app.js"></script>
     <script src="./assets/js/apps/contacts/common/views.js"></script>
