@@ -31,9 +31,9 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager,
             template: "#contact-list-item",
 
             triggers: {
-            "click td a.js-show": "contact:show",
-            "click td a.js-edit": "contact:edit",
-            "click button.js-delete": "contact:delete"
+                "click td a.js-show": "contact:show",
+                "click td a.js-edit": "contact:edit",
+                "click button.js-delete": "contact:delete"
             },
 
             events: {
@@ -76,10 +76,18 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager,
 
             });
 
+            var NoContactsView = Marionette.ItemView.extend({
+                template: "#contact-list-none",
+                tagName: "tr",
+                className: "alert-warning"
+            });
+
+
             List.Contacts = Marionette.CompositeView.extend({
                 tagName: "table",
                 className: "table table-hover",
                 template: "#contact-list",
+                emptyView: NoContactsView,
                 childView: List.Contact,
                 childViewContainer: "tbody",
 
