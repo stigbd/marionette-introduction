@@ -7,11 +7,6 @@ ContactManager.module("HeaderApp", function(Header, ContactManager,
             }
         };
 
-        ContactManager.commands.setHandler("set:active:header",
-        function(name) {
-            ContactManager.HeaderApp.List.Controller.setActiveHeader(name);
-        });
-
         Header.on("start", function() {
             API.listHeader();
         });
