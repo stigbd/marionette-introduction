@@ -3,7 +3,16 @@ ContactManager.module("HeaderApp.List", function(List, ContactManager,
 
         List.Header = Marionette.ItemView.extend({
             template: "#header-link",
-            tagName: "li"
+            tagName: "li",
+
+            events: {
+                "click a": "navigate"
+            },
+
+            navigate: function(e) {
+                e.preventDefault();
+                this.trigger("navigate", this.model);
+            }
         });
 
         List.Headers = Marionette.CompositeView.extend({

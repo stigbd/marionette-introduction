@@ -11,6 +11,11 @@ ContactManager.module("HeaderApp.List", function(List, ContactManager,
                     ContactManager.trigger("contacts:list");
                 });
 
+                headers.on("childview:navigate", function(childView, model) {
+                    var trigger = model.get("navigationTrigger");
+                    ContactManager.trigger(trigger);
+                });
+
                 ContactManager.regions.header.show(headers);
             }
         };
