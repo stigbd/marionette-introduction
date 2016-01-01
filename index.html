@@ -13,25 +13,36 @@
 upgrade from bootstrap 2 to bootstrap 3 -->
 
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="container">
-                <div class="navbar-header">
-                    <span class="navbar-brand">Contact manager</span>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div id="app-container">
+        <div id="header-region"></div>
         <div id="main-region" class="container">
             <p>Here is static content in the web page. You'll notice that it gets replaced by our app as soon as we start it.</p>
         </div>
-
         <div id="dialog-region"></div>
     </div>
 
-    <!-- The Contacts app -->
+
+    <!-- The Header templates  -->
+    <script type="text/template" id="header-template">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#contacts">
+                        Contact manager
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav"></ul>
+                </div>
+            </div>
+    </script>
+
+    <script type="text/template" id="header-link">
+        <a href="#<%- url %>"><%- name %></a>
+    </script>
+
+
+    <!-- The Contacts app templates  -->
 
     <script type="text/template" id="contact-list-layout">
         <div id="panel-region"></div>
@@ -124,28 +135,35 @@ upgrade from bootstrap 2 to bootstrap 3 -->
         </form>
     </script>
 
-    <!-- The About app -->
+    <!-- The About app templates -->
     <script type="text/template" id="about-message">
         <h1> About this application</h1>
         <p>This application was designed to accompany you during your learning.</p>
         <p>Hopefully, it has served you well !</p>
     </script>
 
+    <!-- Vendor -->
     <script src="./assets/js/vendor/jquery/js/jquery.js"></script>
     <script src="./assets/js/vendor/jquery-ui/jquery-ui.js"></script>
     <script src="./assets/js/vendor/json2/json2.js"></script>
     <script src="./assets/js/vendor/underscore/js/underscore.js"></script>
     <script src="./assets/js/vendor/backbone/js/backbone.js"></script>
     <script src="./assets/js/vendor/backbone.syphon/backbone.syphon.js"></script>
+    <script src="./assets/js/vendor/backbone.picky/js/backbone.picky.js"></script>
     <script src="./assets/js/vendor/backbone.localStorage/backbone.localStorage.js"></script>
     <script src="./assets/js/vendor/backbone.marionette/js/backbone.marionette.js"></script>
-
     <script src="./assets/js/vendor/spin.js/spin.js"></script>
 
+    <!-- The app -->
     <script src="./assets/js/app.js"></script>
+
+    <!-- Common -->
     <script src="./assets/js/common/views.js"></script>
+
+    <!-- Entities (collections/models) -->
     <script src="./assets/js/entities/contact.js"></script>
     <script src="./assets/js/entities/common.js"></script>
+    <script src="./assets/js/entities/header.js"></script>
 
     <!-- The Contacts app -->
     <script src="./assets/js/apps/contacts/contacts_app.js"></script>
@@ -162,6 +180,12 @@ upgrade from bootstrap 2 to bootstrap 3 -->
     <script src="./assets/js/apps/about/about_app.js"></script>
     <script src="./assets/js/apps/about/show/show_view.js"></script>
     <script src="./assets/js/apps/about/show/show_controller.js"></script>
+
+    <!-- The Header app -->
+    <script src="./assets/js/apps/header/header_app.js"></script>
+    <script src="./assets/js/apps/header/list/list_view.js"></script>
+    <script src="./assets/js/apps/header/list/list_controller.js"></script>
+
 
     <script type="text/javascript">
     ContactManager.start();

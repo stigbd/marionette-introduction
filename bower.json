@@ -27,7 +27,8 @@
     "spin.js": "spin-js#~2.0.1",
     "backbone.syphon": "~0.6.3",
     "jquery-ui": "~1.11.4",
-    "jqueryuibootstrap": "~1.0.0"
+    "jqueryuibootstrap": "~1.0.0",
+    "backbone.picky": "~0.2.0"
   },
   "devDependencies": {},
   "exportsOverride": {
@@ -42,6 +43,9 @@
     },
     "backbone.marionette": {
       "js": "lib/backbone.marionette.js"
+    },
+    "backbone.picky": {
+      "js": "lib/backbone.picky.js"
     },
     "jasmine": {}
   }
