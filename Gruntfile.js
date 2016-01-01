@@ -11,13 +11,14 @@ module.exports = function(grunt) {
         // Run jsHint syntax checking on all necessary .js files
         jshint: {
             all: ['Gruntfile.js', 'assets/**/*.js', '!assets/js/vendor/**/*.js'],
+            test: ['test/assets/**/*.js']
         },
 
         clean: {
-             dev: {
-                 src: ['bower_components', 'assets/js/vendor']
-             }
-         },
+            dev: {
+                src: ['bower_components', 'assets/js/vendor']
+            }
+        },
 
         // bower
         bower: {
@@ -34,11 +35,27 @@ module.exports = function(grunt) {
             dev: {
                 files: {
                     src: [
-                        'assets/css/*.css',
-                        'assets/img/*',
-                        'assets/js/**/*.js',
-                        '!assets/js/vendor/',
-                        '**/*.html'
+                        './contact_manager/assets/css/*.css',
+                        './contact_manager/assets/img/*',
+                        './contact_manager/assets/js/**/*.js',
+                        './contact_manager/!assets/js/vendor/',
+                        './contact_manager/index.html'
+                    ],
+                },
+                options: {
+                    watchTask: false,
+                    server: './'
+                }
+            },
+            test: {
+                files: {
+                    src: [
+                        './contact_manager/assets/css/*.css',
+                        './contact_manager/assets/img/*',
+                        './contact_manager/assets/js/**/*.js',
+                        './contact_manager/!assets/js/vendor/',
+                        './contact_manager/index.html',
+                        './test/index.html'
                     ],
                 },
                 options: {
@@ -55,6 +72,8 @@ module.exports = function(grunt) {
     grunt.registerTask('init:dev', ['clean:dev', 'bower']);
     // build:dev
 
+    //test
+    grunt.registerTask('test', ['jshint:test', 'browserSync:test']);
     // default
     grunt.registerTask('default', ['jshint', 'browserSync:dev']);
 };
