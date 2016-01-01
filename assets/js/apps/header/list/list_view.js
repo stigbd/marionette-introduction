@@ -10,6 +10,15 @@ ContactManager.module("HeaderApp.List", function(List, ContactManager,
             template: "#header-template",
             className: "navbar navbar-inverse navbar-fixed-top",
             childView: List.Header,
-            childViewContainer: "ul"
+            childViewContainer: "ul",
+
+            events: {
+                "click a.brand": "brandClicked"
+            },
+
+            brandClicked: function(e) {
+                e.preventDefault();
+                this.trigger("brand:clicked");
+            }
         });
     });

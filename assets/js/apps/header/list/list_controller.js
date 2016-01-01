@@ -7,6 +7,10 @@ ContactManager.module("HeaderApp.List", function(List, ContactManager,
                 var links = ContactManager.request("header:entities");
                 var headers = new List.Headers({ collection:links });
 
+                headers.on("brand:clicked", function() {
+                    ContactManager.trigger("contacts:list");
+                });
+
                 ContactManager.regions.header.show(headers);
             }
         };
