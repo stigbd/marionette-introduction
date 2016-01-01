@@ -4,7 +4,7 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager,
 
         List.Controller = {
 
-            listContacts: function(){
+            listContacts: function(criterion){
                 var loadingView = new ContactManager.Common.Views.Loading();
                 ContactManager.regions.main.show(loadingView);
 
@@ -35,6 +35,14 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager,
                         }
                     });
 
+                    if(criterion) {
+                        filteredContacts.filter(criterion);
+                        contactsListPanel.once("show", function() {
+                            contactsListPanel.triggerMethod("set:filter:criterion",
+                            criterion);
+                        });
+                    }
+
                     var contactsListView = new List.Contacts({
                         collection:filteredContacts
                     });
@@ -42,6 +50,8 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager,
                     contactsListPanel.on("contacts:filter",
                     function(filterCriterion) {
                         filteredContacts.filter(filterCriterion);
+                        ContactManager.trigger("contacts:filter",
+                        filterCriterion);
                     });
 
                     contactsListLayout.on("show", function(){
