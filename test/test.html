@@ -7,11 +7,13 @@
     <script src="../node_modules/mocha/mocha.js"></script>
     <script src="../node_modules/chai/chai.js"></script>
     <script src="../node_modules/sinon/pkg/sinon.js"></script>
+    <script src="../bower_components/blanket/dist/mocha/blanket_mocha.js"></script>
 </head>
 
 <body>
-
     <div id="mocha"></div>
+    <div id="messages"></div>
+    <div id="fixtures"></div>
 
     <div id="app-container">
         <div id="header-region"></div>
@@ -152,36 +154,36 @@
     <script src="../contact_manager/assets/js/vendor/spin.js/spin.js"></script>
 
     <!-- The app -->
-    <script src="../contact_manager/assets/js/app.js"></script>
+    <script src="../contact_manager/assets/js/app.js" data-cover></script>
 
     <!-- Common -->
-    <script src="../contact_manager/assets/js/common/views.js"></script>
+    <script src="../contact_manager/assets/js/common/views.js" data-cover></script>
 
     <!-- Entities (collections/models) -->
-    <script src="../contact_manager/assets/js/entities/contact.js"></script>
-    <script src="../contact_manager/assets/js/entities/common.js"></script>
-    <script src="../contact_manager/assets/js/entities/header.js"></script>
+    <script src="../contact_manager/assets/js/entities/contact.js" data-cover></script>
+    <script src="../contact_manager/assets/js/entities/common.js" data-cover></script>
+    <script src="../contact_manager/assets/js/entities/header.js" data-cover></script>
 
     <!-- The Contacts app -->
-    <script src="../contact_manager/assets/js/apps/contacts/contacts_app.js"></script>
-    <script src="../contact_manager/assets/js/apps/contacts/common/views.js"></script>
-    <script src="../contact_manager/assets/js/apps/contacts/list/list_view.js"></script>
-    <script src="../contact_manager/assets/js/apps/contacts/list/list_controller.js"></script>
-    <script src="../contact_manager/assets/js/apps/contacts/show/show_controller.js"></script>
-    <script src="../contact_manager/assets/js/apps/contacts/show/show_view.js"></script>
-    <script src="../contact_manager/assets/js/apps/contacts/edit/edit_controller.js"></script>
-    <script src="../contact_manager/assets/js/apps/contacts/edit/edit_view.js"></script>
-    <script src="../contact_manager/assets/js/apps/contacts/new/new_view.js"></script>
+    <script src="../contact_manager/assets/js/apps/contacts/contacts_app.js" data-cover></script>
+    <script src="../contact_manager/assets/js/apps/contacts/common/views.js" data-cover></script>
+    <script src="../contact_manager/assets/js/apps/contacts/list/list_view.js" data-cover></script>
+    <script src="../contact_manager/assets/js/apps/contacts/list/list_controller.js" data-cover></script>
+    <script src="../contact_manager/assets/js/apps/contacts/show/show_controller.js" data-cover></script>
+    <script src="../contact_manager/assets/js/apps/contacts/show/show_view.js" data-cover></script>
+    <script src="../contact_manager/assets/js/apps/contacts/edit/edit_controller.js" data-cover></script>
+    <script src="../contact_manager/assets/js/apps/contacts/edit/edit_view.js" data-cover></script>
+    <script src="../contact_manager/assets/js/apps/contacts/new/new_view.js" data-cover></script>
 
     <!-- The About app -->
-    <script src="../contact_manager/assets/js/apps/about/about_app.js"></script>
-    <script src="../contact_manager/assets/js/apps/about/show/show_view.js"></script>
-    <script src="../contact_manager/assets/js/apps/about/show/show_controller.js"></script>
+    <script src="../contact_manager/assets/js/apps/about/about_app.js" data-cover></script>
+    <script src="../contact_manager/assets/js/apps/about/show/show_view.js" data-cover></script>
+    <script src="../contact_manager/assets/js/apps/about/show/show_controller.js" data-cover></script>
 
     <!-- The Header app -->
-    <script src="../contact_manager/assets/js/apps/header/header_app.js"></script>
-    <script src="../contact_manager/assets/js/apps/header/list/list_view.js"></script>
-    <script src="../contact_manager/assets/js/apps/header/list/list_controller.js"></script>
+    <script src="../contact_manager/assets/js/apps/header/header_app.js" data-cover></script>
+    <script src="../contact_manager/assets/js/apps/header/list/list_view.js" data-cover></script>
+    <script src="../contact_manager/assets/js/apps/header/list/list_controller.js" data-cover></script>
 
     <script type="text/javascript">
     mocha.setup("bdd");
@@ -192,5 +194,6 @@
     </script>
 
     <script src="../test/assets/js/spec/entities/header.spec.js"></script>
+
 </body>
 </html>
