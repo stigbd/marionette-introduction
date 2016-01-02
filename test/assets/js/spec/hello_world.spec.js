@@ -1,10 +1,13 @@
-describe("Mocha", function() {
-    it("should work as expected", function() {
-        return true;
+var addTwo = function(a) {
+    return parseInt(a, 10) + 2;
+};
+
+describe("addTwo", function() {
+    it("should add 2 to an integer", function() {
+        expect(addTwo(3)).to.equal(5);
     });
 
-    it("shouldn't throw an error", function() {
-        throw new Error("Something broke!");
+    it("should cast strings to integers", function() {
+        expect(addTwo("3")).to.equal(5);
     });
-
 });
