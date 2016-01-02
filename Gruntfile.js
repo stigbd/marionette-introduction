@@ -53,12 +53,13 @@ module.exports = function(grunt) {
             test: {
                 files: {
                     src: [
+                        './contact_manager/index.html',
                         './contact_manager/assets/css/*.css',
                         './contact_manager/assets/img/*',
                         './contact_manager/assets/js/**/*.js',
                         './contact_manager/!assets/js/vendor/',
-                        './contact_manager/index.html',
-                        './test/index.html'
+                        './test/index.html',
+                        './test/assets/js/**/*.js',
                     ],
                 },
                 options: {
