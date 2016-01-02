@@ -30,9 +30,7 @@
     "jqueryuibootstrap": "~1.0.0",
     "backbone.picky": "~0.2.0"
   },
-  "devDependencies": {
-    "mocha": "~2.3.4"
-  },
+  "devDependencies": {},
   "exportsOverride": {
     "jquery": {
       "js": "dist/jquery.js"

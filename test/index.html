@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <title>Marionette Contact Manager Tests</title>
-    <link href="../contact_manager/assets/js/vendor/mocha/mocha.css" rel="stylesheet">
-    <script src="../contact_manager/assets/js/vendor/mocha/mocha.js" </script>
+    <link href="../node_modules/mocha/mocha.css" rel="stylesheet">
+    <script src="../node_modules/mocha/mocha.js" </script>
     </head>
 
     <!-- Check http://code.divshot.com/bootstrap3_upgrader/ for hints on howto
@@ -184,14 +184,13 @@
         <script src="../contact_manager/assets/js/apps/header/list/list_view.js"></script>
         <script src="../contact_manager/assets/js/apps/header/list/list_controller.js"></script>
 
-
         <script type="text/javascript">
             mocha.setup("bdd");
             window.onload = function(){
                 mocha.run();
             };
         </script>
- 
+
         <script src="../test/assets/js/spec/hello_world.spec.js"></script>
     </body>
     </html>
