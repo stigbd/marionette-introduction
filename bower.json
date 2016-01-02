@@ -31,7 +31,9 @@
     "backbone.picky": "~0.2.0"
   },
   "devDependencies": {
-    "blanket": "~1.1.7"
+    "blanket": "~1.1.7",
+    "mocha": "~2.3.4",
+    "chai": "~3.4.2"
   },
   "exportsOverride": {
     "jquery": {
