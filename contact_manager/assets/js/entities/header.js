@@ -16,8 +16,8 @@ ContactManager.module("Entities", function(Entities,
             }
         });
 
-        var initializeHeaders = function() {
-            Entities.headers = new Entities.HeaderCollection([
+        Entities._initializeHeaders = function() {
+            return new Entities.HeaderCollection([
                 {
                     name: "Contacts",
                     url: "contacts",
@@ -30,12 +30,13 @@ ContactManager.module("Entities", function(Entities,
             ]);
         };
 
+        var headers;
         var API = {
             getHeaders: function() {
-                if(Entities.headers === undefined) {
-                    initializeHeaders();
+                if(headers === undefined) {
+                    headers = Entities._initializeHeaders();
                 }
-                return Entities.headers;
+                return headers;
             }
         };
 

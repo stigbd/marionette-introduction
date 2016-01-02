@@ -57,16 +57,16 @@ module.exports = function(grunt) {
                         './contact_manager/assets/css/*.css',
                         './contact_manager/assets/img/*',
                         './contact_manager/assets/js/**/*.js',
+                        './test/test.html',
+                        './test/assets/js/spec/**/*.spec.js',
                         './contact_manager/!assets/js/vendor/',
-                        './test/index.html',
-                        './test/assets/js/**/*.js',
                     ],
                 },
                 options: {
                     watchTask: false,
                     server: {
                     baseDir: "./",
-                    index: "./test/index.html"
+                    index: "./test/test.html"
                     }
                 }
             }
