@@ -44,7 +44,10 @@ module.exports = function(grunt) {
                 },
                 options: {
                     watchTask: false,
-                    server: './'
+                    server: {
+                        baseDir: "./contact_manager",
+                        index: "index.html"
+                    }
                 }
             },
             test: {
@@ -60,7 +63,10 @@ module.exports = function(grunt) {
                 },
                 options: {
                     watchTask: false,
-                    server: './'
+                    server: {
+                    baseDir: "./",
+                    index: "./test/index.html"
+                    }
                 }
             }
         }
