@@ -1,54 +1,56 @@
-ContactManager.module("ContactsApp", function(ContactsApp, ContactManager,
-    Backbone, Marionette, $, _){
+/*global
+ContactManager
+*/
+ContactManager.module("ContactsApp", function (ContactsApp, ContactManager,
+    Backbone, Marionette, $, _) {
+  ContactsApp.Router = Marionette.AppRouter.extend({
+    appRoutes: {
+      "contacts(/filter/criterion::criterion)": "listContacts",
+      "contacts": "listContacts",
+      "contacts/:id": "showContact",
+      "contacts/:id/edit": "editContact"
+    }
+  });
 
-        ContactsApp.Router = Marionette.AppRouter.extend({
-            appRoutes: {
-                "contacts(/filter/criterion::criterion)": "listContacts",
-                "contacts": "listContacts",
-                "contacts/:id": "showContact",
-                "contacts/:id/edit": "editContact"
-            }
-        });
+  var API = {
+    listContacts: function (criterion) {
+      ContactsApp.List.Controller.listContacts(criterion);
+    },
+    showContact: function (id) {
+      ContactsApp.Show.Controller.showContact(id);
+    },
+    editContact: function (id) {
+      ContactsApp.Edit.Controller.editContact(id);
+    }
+  };
 
-        var API = {
-            listContacts: function(criterion){
-                ContactsApp.List.Controller.listContacts(criterion);
-            },
-            showContact: function(id){
-                ContactsApp.Show.Controller.showContact(id);
-            },
-            editContact: function(id){
-                ContactsApp.Edit.Controller.editContact(id);
-            }
-        };
-
-        ContactManager.on("contacts:list", function() {
-            ContactManager.navigate("contacts");
-            API.listContacts();
-        });
-        ContactManager.on("contacts:filter", function(criterion){
-            if(criterion) {
-                ContactManager.navigate("contacts/filter/criterion:" +
+  ContactManager.on("contacts:list", function () {
+    ContactManager.navigate("contacts");
+    API.listContacts();
+  });
+  ContactManager.on("contacts:filter", function (criterion) {
+    if (criterion) {
+      ContactManager.navigate("contacts/filter/criterion:" +
             criterion);
-            }
-            else {
-                ContactManager.navigate("contacts");
-            }
-        });
+    } else {
+      ContactManager.navigate("contacts");
+    }
+  });
 
-        ContactManager.on("contact:show", function(id){
-            ContactManager.navigate("contacts/" + id);
-            API.showContact(id);
-        });
+  ContactManager.on("contact:show", function (id) {
+    ContactManager.navigate("contacts/" + id);
+    API.showContact(id);
+  });
 
-        ContactManager.on("contact:edit", function(id){
-            ContactManager.navigate("contacts/" + id + "/edit");
-            API.editContact(id);
-        });
+  ContactManager.on("contact:edit", function (id) {
+    ContactManager.navigate("contacts/" + id + "/edit");
+    API.editContact(id);
+  });
 
-        ContactsApp.on("start", function() {
-            new ContactsApp.Router({
-                controller: API
-            });
-        });
+  ContactsApp.on("start", function () {
+    /* eslint-disable no-new */
+    new ContactsApp.Router({
+      controller: API
     });
+  });
+});

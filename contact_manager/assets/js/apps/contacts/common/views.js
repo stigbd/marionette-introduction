@@ -1,41 +1,43 @@
-ContactManager.module("ContactsApp.Common.Views", function(Views, ContactManager,
-    Backbone, Marionette, $, _){
+/*global
+ContactManager
+*/
+ContactManager.module("ContactsApp.Common.Views", function (Views, ContactManager,
+    Backbone, Marionette, $, _) {
+  Views.Form = Marionette.ItemView.extend({
+    template: "#contact-form",
 
-        Views.Form = Marionette.ItemView.extend({
-            template: "#contact-form",
+    events: {
+      "click button.js-submit": "submitClicked"
+    },
 
-            events: {
-                "click button.js-submit": "submitClicked"
-            },
+    submitClicked: function (e) {
+      e.preventDefault();
+      var data = Backbone.Syphon.serialize(this);
+      this.trigger("form:submit", data);
+    },
 
-            submitClicked: function(e){
-                e.preventDefault();
-                var data = Backbone.Syphon.serialize(this);
-                this.trigger("form:submit", data);
-            },
+    onFormDataInvalid: function (errors) {
+      var $view = this.$el;
 
-            onFormDataInvalid: function(errors){
-                var $view = this.$el;
-
-                var clearFormErrors = function() {
-                    var $form = $view.find("form");
-                    $form.find(".help-block-error").each(function() {
-                        $(this).remove();
-                    });
-                    $form.find(".form-group.error").each(function() {
-                        $(this).removeClass("error");
-                    });
-                };
-
-                var markErrors = function(value, key){
-                    var $controlGroup = $view.find("#contact-" +
-                    key).parent();
-                    var $errorEl = $("<span>", {class: "help-block-error",
-                    text: value});
-                    $controlGroup.append($errorEl).addClass("error");
-                };
-                clearFormErrors();
-                _.each(errors, markErrors);
-            }
+      var clearFormErrors = function () {
+        var $form = $view.find("form");
+        $form.find(".help-block-error").each(function () {
+          $(this).remove();
         });
-    });
+        $form.find(".form-group.error").each(function () {
+          $(this).removeClass("error");
+        });
+      };
+
+      var markErrors = function (value, key) {
+        var $controlGroup = $view.find("#contact-" +
+                    key).parent();
+        var $errorEl = $("<span>", {class: "help-block-error",
+                    text: value});
+        $controlGroup.append($errorEl).addClass("error");
+      };
+      clearFormErrors();
+      _.each(errors, markErrors);
+    }
+  });
+});

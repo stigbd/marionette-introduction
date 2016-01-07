@@ -1,0 +1,16 @@
+{
+  "env": {
+    "browser": true,
+    "jasmine": true,
+    "mocha": true
+  },
+  "extends": "standard",
+  "plugins": [
+    "standard"
+  ],
+  "rules": {
+    "semi": [2, "always"],
+    "quotes": [2, "double"],
+    "no-redeclare": [2, {"builtinGlobals": true}]
+  }
+}
