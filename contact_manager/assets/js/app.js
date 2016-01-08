@@ -1,7 +1,7 @@
 /*global
- Marionette,
- Backbone
- */
+Marionette,
+Backbone
+*/
 var ContactManager = new Marionette.Application();
 
 ContactManager.navigate = function (route, options) {
@@ -31,7 +31,6 @@ ContactManager.on("before:start", function () {
       self.$el.dialog("destroy");
     };
     this.listenTo(view, "dialog:close", closeDialog);
-
     this.$el.dialog({
       modal: true,
       title: view.title,
@@ -46,7 +45,6 @@ ContactManager.on("before:start", function () {
 ContactManager.on("start", function () {
   if (Backbone.history) {
     Backbone.history.start();
-
     if (this.getCurrentRoute() === "") {
       ContactManager.trigger("contacts:list");
     }

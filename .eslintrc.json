@@ -9,6 +9,7 @@
     "standard"
   ],
   "rules": {
+    "strict": [2, "global"],
     "semi": [2, "always"],
     "quotes": [2, "double"],
     "no-redeclare": [2, {"builtinGlobals": true}]
