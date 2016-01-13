@@ -49,6 +49,42 @@ describe("Contact entity", function () {
         expect(this.contact.isValid()).to.not.be.true;
       });
     });
+
+    describe("contact:entitiy request", function () {
+      before(function () {
+        this.clock = sinon.useFakeTimers();
+        this.contact = new ContactManager.Entities.Contact();
+        var self = this;
+        sinon.stub(this.contact, "fetch", function (options) {
+          return options.success(self.contact);
+        });
+        sinon.stub(ContactManager.Entities, "Contact").returns(this.contact);
+      });
+      after(function () {
+        delete this.contact;
+        ContactManager.Entities.Contact.restore();
+        this.clock.restore();
+      });
+      it("fetches the requested model by id", function () {
+        var requestId = 2;
+        var promise = ContactManager.request("contact:entity", requestId);
+        expect(ContactManager.Entities.Contact).to.have.been
+        .calledWith({ id: requestId }).once;
+        this.clock.tick(2000);
+        expect(this.contact.fetch).to.have.been.called.once;
+        var self = this;
+        $.when(promise).done(function (fetchedContact) {
+          expect(fetchedContact).to.equal(self.contact);
+        });
+      });
+      it("has a 2 second delay", function () {
+        var promise = ContactManager.request("contact:entity", 2);
+        this.clock.tick(1999);
+        expect(promise.state()).to.equal("pending");
+        this.clock.tick(1);
+        expect(promise.state()).to.equal("resolved");
+      });
+    });
   });
   describe("Collection", function () {
     before(function () {
