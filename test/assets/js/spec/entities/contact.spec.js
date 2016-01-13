@@ -1,5 +1,7 @@
 /*global
-ContactManager
+ContactManager,
+sinon,
+$
 */
 describe("Contact entity", function () {
   describe("Model", function () {
@@ -10,7 +12,6 @@ describe("Contact entity", function () {
       after(function () {
         delete this.contact;
       });
-
       it("sets a default value of '' for firstName", function () {
         expect(this.contact.get("firstName")).to.equal("");
       });
@@ -32,7 +33,6 @@ describe("Contact entity", function () {
       afterEach(function () {
         delete this.contact;
       });
-
       it("accepts models with valid data", function () {
         expect(this.contact.isValid()).to.be.true;
       });
@@ -62,6 +62,51 @@ describe("Contact entity", function () {
     });
     it("sorts models by firstName", function () {
       expect(this.contacts.comparator).to.equal("firstName");
+    });
+    describe("contact:entities request", function () {
+      beforeEach(function () {
+        var contact = new ContactManager.Entities.Contact();
+        this.contactArray = [ contact ];
+        sinon.stub(ContactManager.Entities, "ContactCollection")
+        .returns(this.contacts);
+      });
+      afterEach(function () {
+        delete this.contactArray;
+        ContactManager.Entities.ContactCollection.restore();
+      });
+
+      it("fetches the collection of existing models",
+      sinon.test(function (done) {
+        var self = this;
+        this.stub(this.contacts, "fetch", function (options) {
+          return options.success(self.contactArray);
+        });
+
+        var fetchingContacts = ContactManager.request("contact:entities");
+        $.when(fetchingContacts).done(function (fetchedContacts) {
+          expect(self.contacts.fetch).to.have.been.called.once;
+          expect(fetchedContacts).to.equal(self.contactArray);
+          done();
+        });
+      }));
+      it.only("creates new models if none exist, then returns them",
+      sinon.test(function (done) {
+        this.stub(this.contacts, "fetch", function (options) {
+          return options.success([]);
+        });
+        this.stub(ContactManager.Entities, "_initializeContacts")
+        .returns(this.contactArray);
+        this.spy(this.contacts, "reset");
+
+        var fetchingContacts = ContactManager.request("contact:entities");
+        var self = this;
+        $.when(fetchingContacts).done(function (fetchedContacts) {
+          expect(ContactManager.Entities._initializeContacts)
+          .to.have.been.called.once;
+          expect(self.contacts.reset).to.have.been.calledWith(self.contactArray);
+          done();
+        });
+      }));
     });
   });
 });

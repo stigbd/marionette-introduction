@@ -39,7 +39,7 @@ ContactManager.module("Entities", function (Entities,
     localStorage: new Backbone.LocalStorage("Contacts")
   });
 
-  var initializeContacts = function () {
+  Entities._initializeContacts = function () {
     var contacts = new Entities.ContactCollection([
       {
         id: 1,
@@ -95,7 +95,7 @@ ContactManager.module("Entities", function (Entities,
         if (contacts.length === 0) {
                         // if no contacts, create some
 
-          var models = initializeContacts();
+          var models = Entities._initializeContacts();
           contacts.reset(models);
         }
       });
