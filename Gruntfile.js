@@ -30,6 +30,12 @@ module.exports = function (grunt) {
         }
       }
     },
+
+    // mocha_phantomjs
+    mocha_phantomjs: {
+      all: ["test/**/*.html"]
+    },
+
     // browsersync
     browserSync: {
       dev: {
@@ -78,8 +84,10 @@ module.exports = function (grunt) {
   // build:dev
   // eslint
   grunt.registerTask("lint", ["eslint"]);
-  // test
-  grunt.registerTask("test", ["eslint", "browserSync:test"]);
+  // browsertest
+  grunt.registerTask("browsertest", ["eslint", "browserSync:test"]);
+  // browsertest
+  grunt.registerTask("test", ["eslint", "mocha_phantomjs"]);
   // default
   grunt.registerTask("default", ["eslint", "browserSync:dev"]);
 };
