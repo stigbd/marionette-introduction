@@ -1,7 +1,8 @@
 /*global
 ContactManager,
 sinon,
-$
+$,
+Backbone
 */
 describe("Contact entity", function () {
   describe("Model", function () {
@@ -22,6 +23,7 @@ describe("Contact entity", function () {
         expect(this.contact.get("phoneNumber")).to.equal("");
       });
     });
+
     describe("Validations", function () {
       beforeEach(function () {
         this.contact = new ContactManager.Entities.Contact({
@@ -84,8 +86,14 @@ describe("Contact entity", function () {
         this.clock.tick(1);
         expect(promise.state()).to.equal("resolved");
       });
+      it("is configured for localstorage", function () {
+        var contact = new ContactManager.Entities.Contact();
+        expect(contact.localStorage instanceof Backbone.LocalStorage)
+        .to.be.true;
+      });
     });
   });
+
   describe("Collection", function () {
     before(function () {
       this.contacts = new ContactManager.Entities.ContactCollection();
