@@ -133,7 +133,7 @@ describe("Contact entity", function () {
           done();
         });
       }));
-      it.only("creates new models if none exist, then returns them",
+      it("creates new models if none exist, then returns them",
       sinon.test(function (done) {
         this.stub(this.contacts, "fetch", function (options) {
           return options.success([]);
