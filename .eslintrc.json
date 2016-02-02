@@ -9,6 +9,7 @@
     "standard"
   ],
   "rules": {
+    "indent": [2, 2],
     "strict": [2, "global"],
     "semi": [2, "always"],
     "quotes": [2, "double"],

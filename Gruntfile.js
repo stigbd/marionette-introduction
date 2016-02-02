@@ -3,6 +3,9 @@ module.exports = function (grunt) {
   require("load-grunt-tasks")(grunt);
   grunt.initConfig({
     pkg: grunt.file.readJSON("package.json"),
+    availabletasks: {           // task
+      tasks: {}               // target
+    },
     // jsHint
     // Run jsHint syntax checking on all necessary .js files
     eslint: {
@@ -12,16 +15,16 @@ module.exports = function (grunt) {
         quiet: true
       },
       target: ["Gruntfile.js",
-        "contact_manager/assets/js/**/*.js",
-        "test/assets/js/**/*.js"
-      ]
+      "contact_manager/assets/js/**/*.js",
+      "test/assets/js/**/*.js"
+    ]
     },
     clean: {
       dev: {
         src: ["bower_components", "assets/js/vendor"]
       }
     },
-    // bower
+  // bower
     bower: {
       install: {
         options: {
@@ -31,12 +34,12 @@ module.exports = function (grunt) {
       }
     },
 
-    // mocha_phantomjs
+  // mocha_phantomjs
     mocha_phantomjs: {
       all: ["test/**/*.html"]
     },
 
-    // browsersync
+  // browsersync
     browserSync: {
       dev: {
         files: {
@@ -78,16 +81,18 @@ module.exports = function (grunt) {
       }
     }
   });
-  // register tasks
-  // init:dev
+// register tasks
+// help
+  grunt.registerTask("help", ["availabletasks"]);
+// init:dev
   grunt.registerTask("init:dev", ["clean:dev", "bower"]);
-  // build:dev
-  // eslint
+// build:dev
+// eslint
   grunt.registerTask("lint", ["eslint"]);
-  // browsertest
+// browsertest
   grunt.registerTask("browsertest", ["eslint", "browserSync:test"]);
-  // browsertest
+// browsertest
   grunt.registerTask("test", ["eslint", "mocha_phantomjs"]);
-  // default
+// default
   grunt.registerTask("default", ["eslint", "browserSync:dev"]);
 };
