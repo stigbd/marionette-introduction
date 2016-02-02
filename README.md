@@ -1,4 +1,5 @@
 # Marionette-introduction
+[![Build Status](https://travis-ci.org/stigbd/marionette-introduction.svg?branch=master)](https://travis-ci.org/stigbd/marionette-introduction)
 App made from reading David Sulc's books:
 * [Backbone.Marionette.js: A Gentle Introduction](https://leanpub.com/marionette-gentle-introduction)
 * [Bakcbone.Marionette.js: Testing and Refactoring](https://leanpub.com/marionette-testing)
