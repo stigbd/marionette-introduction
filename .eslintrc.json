@@ -6,7 +6,8 @@
   },
   "extends": "standard",
   "plugins": [
-    "standard"
+    "standard",
+    "html"
   ],
   "rules": {
     "indent": [2, 2],
