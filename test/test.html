@@ -187,15 +187,21 @@
   <script src="../contact_manager/assets/js/apps/header/list/list_controller.js" data-cover></script>
 
   <script type="text/javascript">
+  /*global
+  chai
+  */
   mocha.setup("bdd");
   window.expect = chai.expect;
-  window.onload = function(){
+  window.onload = function () {
     (window.mochaPhantomJS || mocha).run();
   };
   </script>
 
+<!-- Test entities -->
   <script src="../test/assets/js/spec/entities/header.spec.js"></script>
   <script src="../test/assets/js/spec/entities/common.spec.js"></script>
   <script src="../test/assets/js/spec/entities/contact.spec.js"></script>
+<!-- Test common views -->
+  <script src="../test/assets/js/spec/common/views.spec.js"></script>
 </body>
 </html>

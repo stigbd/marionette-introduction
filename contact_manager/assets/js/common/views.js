@@ -35,8 +35,8 @@ ContactManager.module("Common.Views", function (Views, ContactManager,
         top: "230px", // Top position relative to parent in px
         left: "230px" // Left position relative to parent in px
       };
-      var target = document.getElementById("spinner");
-      new Spinner(opts).spin(target);
+      var el = document.getElementById("spinner");
+      new Spinner(opts).spin(el);
     }
   });
 });
